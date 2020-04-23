@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="engine" class="com.company.bean.modern.V8"/>
+    <bean id="steamEngine" class="com.company.bean.old.SteamEngine"/>
+
+
+    <bean id="ladaV8" class="com.company.bean.modern.Car" scope="prototype" autowire="byName">
+        <property name="vin" value="qeweqweq"/>
+    </bean>
+
+    <bean id="maybach" class="com.company.bean.modern.Car" scope="prototype" autowire="byName">
+        <property name="vin" value="777777777"/>
+    </bean>
+
+    <bean id="hogvartsExpress" class="com.company.bean.old.SteamTrain" scope="prototype" autowire="byType">
+        <property name="model" value="sapsan"/>
+    </bean>
+
+</beans>

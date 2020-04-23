@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="v8Engine" class="com.company.bean.modern.V8"/>
+    <bean id="diselEngine" class="com.company.bean.modern.Disel"/>
+
+    <bean id="ladaV8" class="com.company.bean.modern.Car" scope="prototype">
+        <property name="engine" ref="v8Engine"/>
+        <property name="vin" value="qeweqweq"/>
+    </bean>
+
+    <bean id="ladaDisel" class="com.company.bean.modern.Car" scope="prototype">
+        <property name="engine" ref="diselEngine"/>
+        <property name="vin" value="qeweqweq123"/>
+    </bean>
+
+    <bean id="maybach" class="com.company.bean.modern.Car" scope="prototype">
+        <property name="engine" ref="diselEngine"/>
+        <property name="vin" value="777777777"/>
+    </bean>
+
+
+</beans>
