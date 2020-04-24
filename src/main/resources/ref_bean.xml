@@ -7,7 +7,7 @@
     <bean id="v8Engine" class="com.company.bean.modern.V8"/>
     <bean id="diselEngine" class="com.company.bean.modern.Disel"/>
 
-    <bean id="ladaV8" class="com.company.bean.modern.Car" scope="prototype">
+    <bean id="ladaV8" class="com.company.bean.modern.Car" scope="prototype" autowire="no">
         <property name="engine" ref="v8Engine"/>
         <property name="vin" value="qeweqweq"/>
     </bean>

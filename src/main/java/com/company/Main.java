@@ -13,7 +13,6 @@ public class Main {
         byName("name_bean.xml");
         byType("type_bean.xml");
         byConstructor("constructor_bean.xml");
-
     }
 
     public static void byRef(String configName){
@@ -86,5 +85,4 @@ public class Main {
 
 
     }
-
 }

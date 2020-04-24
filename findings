@@ -1,31 +1,38 @@
 autowiring findings
 1) No = default
-This is default setting which means no autowiring and you should use explicit bean reference for wiring.
-You have nothing to do special for this wiring.
 <property name="name" ref="some ref"/>
+настройка по умолчанию, autowire="no" или не указываем, мы должны явно указывать ссылку на компонент для внедрения
+зависимости
 
 2) By name
-This mode specifies autowiring by property name. Spring container looks at the beans on which auto-wire attribute
-is set to byName in the XML configuration file. It then tries to match and wire its properties with the beans defined
-by the same names in the configuration file. If matches are found, it will inject those beans.
-Otherwise, bean(s) will not be wired.
-setter has to has a setter with right name i.e if engine bean has name/id "engine" setter has to has name "setEngine"
-or "setengine"
+Автосвязавание по имени свойтсва
+если для бина установлено свойтсво autowire="byName" и этот бин содержит свойство engine и его сеттер (к примеру)
+setEngine, спринг будет искать бин(по имени сеттера) для вставки с таким же
+именем(без set) те "engine"
+
+Свойство может иметь имя отличное от имени сеттера к примеру: свойтсво engine и его сеттер setX, тогда бин для встаки
+должен иметь имя(id) "x"
+
+если бин вся встанки не будет найден, поле будет иметь значение null
+остальные поля можем связать так же через ссылку
 
 3) By type
-This mode specifies autowiring by property type.
-Spring container looks at the beans on which autowire attribute is set to byType in the XML configuration file.
-It then tries to match and wire a property if its type matches with exactly one of the beans name in the configuration
-file. If matches are found, it will inject those beans. Otherwise, bean(s) will not be wired
-Class has to has a setter for field even field is public
-field can has any name, setter's name has to contain "set"+"any thing, but not empty" ("setX", "setx" but not "set");
+Автосвязывание по типу свойства
+К примеру если бин содержит свойство engine типа ModernEngine, спринг будет использовать для встаки бин определённый
+с таким же типом. Cвойство может иметь любое имя, его сеттер должет иметь имя имеющее в начале "set" к примеру setX,
+если бин вся встанки не будет найден, поле будет иметь значение null
+остальные поля можем связать так же через ссылку
 
 4) By constructor
-This mode is very similar to byType, but it applies to constructor arguments. Spring container looks at the beans on
-which autowire attribute is set constructor in the XML configuration file. It then tries to match and wire its
-constructor's argument with exactly one of the beans name in the configuration file. If matches are found, it will
-inject those beans. Otherwise, bean(s) will not be wired.
+Автосвязывание по конструктору
+спринг для компонента с автосзязыванием по конструктуру будет искать для вставки бины с таким же типом как и у
+аргументов конструктора
+к примеру конструктор Car(ModernEngine engine, String vin) для вставки будет искаться бин с типом ModernEngine,
+остальные поля можем завать с помощью конструкции <constructor-arg value = "xxx"/>
+Имена свойств и бинов не играют роли
 
 5) Autodetect
-Spring first tries to wire using autowire by constructor, if it does not work, Spring tries to autowire by byType.
-The autodetect option is deprecated!
+устарело с версии Spring 3.x
+сделал отдельный проект со старой версией спринга для этого примера https://github.com/sadb1312s/aotudetect
+Сначала спринг попытается сделать связывание через конструктор, если не получится попробует сделать связывание по
+типу
